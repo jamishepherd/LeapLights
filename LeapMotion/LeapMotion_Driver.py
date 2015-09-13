@@ -13,7 +13,7 @@ class LeapListener(Leap.Listener):
         print 'LeapMotion connected'
         controller.enable_gesture(Leap.Gesture.TYPE_SWIPE);
         controller.config.set("Gesture.Swipe.MinLength", 100.0)
-        controller.config.set("Gesture.Swipe.MinVelocity", 750)
+        controller.config.set("Gesture.Swipe.MinVelocity", 600)
         controller.config.save()
         
     def on_disconnect(self,controller):

@@ -7,6 +7,7 @@ def main():
         print "Starting Initialization"
         leapDev = LeapMotion_Driver.LeapListener()
         controller = Leap.Controller()
+        controller.add_listener(leapDev)
         print "Connected to LeapMotion"
         dmx_right = DMX_Driver.DMX_Controller("/dev/ttyUSB0",1,0,False)
         dmx_left = DMX_Driver.DMX_Controller("/dev/ttyUSB1",1,4,True)
@@ -39,14 +40,17 @@ def main():
             dmx_left.light_intensity(left_grip_strength)
 
             for gesture in all_gestures:
+                print "Gesture happened."
                 if gesture.type == Leap.Gesture.TYPE_SWIPE:
                     swipe = Leap.SwipeGesture(gesture)
+                    print "Swipe event happened."
                     if (swipe.direction[0] > 0.8):
                         dmx_right.change_color()                        
-                        print 'swipe right detected'
+                        print 'swipe right detected.'
                     elif (swipe.direction[0] < (-0.8)):
                         dmx_left.change_color()
-                        print 'swipe left detected'
+                        print 'swipe left detected.'
+                        
     except KeyboardInterrupt:
         pass
     finally:
