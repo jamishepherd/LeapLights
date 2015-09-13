@@ -4,7 +4,6 @@ September 10, 2015
 @author: Jami L Johnson
 '''
 import Leap, sys, thread, time
-from Leap import SwipeGesture
 
 class LeapListener(Leap.Listener):
     def on_init(self,controller):
@@ -13,7 +12,10 @@ class LeapListener(Leap.Listener):
     def on_connect(self,controller):
         print 'LeapMotion connected'
         controller.enable_gesture(Leap.Gesture.TYPE_SWIPE);
-
+        controller.config.set("Gesture.Swipe.MinLength", 100.0)
+        controller.config.set("Gesture.Swipe.MinVelocity", 750)
+        controller.config.save()
+        
     def on_disconnect(self,controller):
         print 'LeapMotion disconnected'
 
