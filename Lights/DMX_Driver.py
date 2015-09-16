@@ -53,10 +53,7 @@ class DMX_Controller():
         self.dmx_com.render()
         self.dmx_com.setChannel(self.y_channel,hand_position[1])
         self.dmx_com.render()
-#        print "The Leap Horizontal is: " +str(position_data[0])+ " The Leap Vertical is: "+str(position_data[1])
-#        print "The DMX Horizontal is: " +str(hand_position[0])+ " The DMX Vertical is: "+str(hand_position[1])
-#        print "."
-        
+       
     def change_color(self):
         self.color_index = self.color_index+1
         if (self.color_index > 8):
